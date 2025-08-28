@@ -1,60 +1,95 @@
+# AutomationProject/ui/actions_frame.py
 import tkinter as tk
 from tkinter import ttk
 from data.models import Action
+from core.recorder import Recorder
 
 class ActionsFrame(ttk.LabelFrame):
-    def __init__(self, parent, *args, **kwargs):
+    def __init__(self, parent, get_process_name_callback, log_callback, *args, **kwargs):
         super().__init__(parent, text="Actions", *args, **kwargs)
         self.current_condition = None
+        self.get_process_name = get_process_name_callback
+        self.log = log_callback
+        self.recorder_thread = None
 
+        self._create_widgets()
+
+    def _create_widgets(self):
         self.columnconfigure(0, weight=1)
         self.rowconfigure(0, weight=1)
 
-        # Action 목록을 보여줄 Listbox
-        self.listbox = tk.Listbox(self, bg="#3c3c3c", fg="#f0f0f0", selectbackground="#005a9e", borderwidth=0, highlightthickness=0)
-        self.listbox.grid(row=0, column=0, sticky="nsew", padx=5, pady=5) # padx, pady 추가
+        # Treeview로 변경하여 세부 정보 표시
+        self.tree = ttk.Treeview(self, columns=("Delay", "Type", "Details"), show="headings")
+        self.tree.heading("Delay", text="Delay(s)")
+        self.tree.heading("Type", text="Type")
+        self.tree.heading("Details", text="Details")
+        self.tree.column("Delay", width=60, anchor="center")
+        self.tree.column("Type", width=120)
+        self.tree.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
         
-        # 스크롤바 추가
-        self.listbox_scroll_y = ttk.Scrollbar(self, orient="vertical", command=self.listbox.yview)
-        self.listbox_scroll_y.grid(row=0, column=1, sticky="ns")
-        self.listbox.configure(yscrollcommand=self.listbox_scroll_y.set)
+        control_frame = ttk.Frame(self, style='TFrame')
+        control_frame.grid(row=1, column=0, sticky="ew", padx=5, pady=(5,0))
 
-        # 컨트롤 프레임 (추가/삭제)
-        control_frame = ttk.Frame(self, style='TFrame') # 배경색 통일을 위해 style 적용
-        control_frame.grid(row=1, column=0, columnspan=2, sticky="ew", padx=5, pady=(5,0)) # columnspan=2로 스크롤바 영역까지 확장
-
-        # Combobox 스타일 적용
-        self.action_type_combo = ttk.Combobox(control_frame, state="readonly", values=[
-            "Mouse Move", "Coordinate Click", "Mouse Double Click", "Mouse Click", "Key Input"
-        ], style='TCombobox') # TCombobox 스타일 적용
-        self.action_type_combo.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 5))
-        self.action_type_combo.set("Mouse Click")
+        # Record 버튼 추가
+        self.record_button = ttk.Button(control_frame, text="Record Actions", command=self.toggle_recording)
+        self.record_button.pack(side=tk.LEFT, padx=(0, 5))
         
-        ttk.Button(control_frame, text="Add", command=self.add_action).pack(side=tk.LEFT)
-        ttk.Button(control_frame, text="Remove", command=self.remove_action).pack(side=tk.LEFT, padx=5)
+        # Add/Remove 버튼 (수동 조작용)
+        ttk.Button(control_frame, text="Remove Selected", command=self.remove_action).pack(side=tk.LEFT)
 
     def load_condition(self, condition):
         self.current_condition = condition
-        self.update_listbox()
+        self.update_treeview()
         
-    def update_listbox(self):
-        self.listbox.delete(0, tk.END)
+    def update_treeview(self):
+        for i in self.tree.get_children():
+            self.tree.delete(i)
+        
         if self.current_condition:
             for action in self.current_condition.actions:
-                params_str = str(action.params)
-                self.listbox.insert(tk.END, f"  {action.type} - {params_str}")
-                
-    def add_action(self):
-        if not self.current_condition: return
-        action_type = self.action_type_combo.get()
-        new_action = Action(action_type=action_type)
-        self.current_condition.add_action(new_action)
-        self.update_listbox()
-        print(f"UI: Added Action '{action_type}' to Condition '{self.current_condition.type}'")
-        
+                delay = action.params.get('delay', 0)
+                details = ", ".join([f"{k}:{v}" for k, v in action.params.items() if k != 'delay'])
+                self.tree.insert("", "end", values=(f"{delay:.2f}", action.type, details))
+
+    def toggle_recording(self):
+        if self.recorder_thread and self.recorder_thread.is_alive():
+            # 이 기능은 ESC로만 중지되므로 버튼은 비활성화 상태를 유지
+            return
+
+        process_name = self.get_process_name()
+        if not process_name:
+            self.log("❌ ERROR: Process Name must be set to start recording.")
+            return
+
+        if not self.current_condition:
+            self.log("❌ ERROR: A condition must be selected to add recorded actions.")
+            return
+
+        self.log("🔴 Recording... (Press ESC to Stop)")
+        self.record_button.config(state=tk.DISABLED)
+        self.recorder_thread = Recorder(process_name=process_name, callback=self.on_recording_complete)
+        self.recorder_thread.start()
+
+    def on_recording_complete(self, recorded_actions):
+        # 백그라운드 스레드에서 호출되므로, UI 업데이트는 self.after 사용
+        self.after(0, self._update_ui_after_recording, recorded_actions)
+
+    def _update_ui_after_recording(self, recorded_actions):
+        self.log(f"✅ Recording finished. {len(recorded_actions)} actions captured.")
+        if self.current_condition:
+            self.current_condition.actions.extend(recorded_actions)
+            self.update_treeview()
+        self.record_button.config(state=tk.NORMAL)
+
     def remove_action(self):
-        if not self.current_condition or not self.listbox.curselection(): return
-        selected_index = self.listbox.curselection()[0]
-        del self.current_condition.actions[selected_index]
-        self.update_listbox()
-        print(f"UI: Removed action at index {selected_index}.")
+        if not self.current_condition or not self.tree.selection(): return
+        
+        selected_iids = self.tree.selection()
+        # Treeview의 iid는 객체 id가 아니므로, index를 기반으로 삭제
+        indices_to_delete = sorted([self.tree.index(iid) for iid in selected_iids], reverse=True)
+
+        for index in indices_to_delete:
+            del self.current_condition.actions[index]
+        
+        self.update_treeview()
+        print(f"UI: Removed {len(indices_to_delete)} action(s).")

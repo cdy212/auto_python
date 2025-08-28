@@ -5,12 +5,19 @@ import pygetwindow as gw
 import ctypes
 
 if __name__ == "__main__":
-    # <<< 수정: DPI 인식 설정 추가 >>>
-    # Windows 배율 설정에 따른 좌표 왜곡 문제를 해결합니다.
+    # <<< 수정: DPI 인식 설정을 다시 활성화하고 v2로 강화합니다. >>>
+    # এটি Windows স্কেলিং সমস্যা সমাধান করে।
     try:
-        ctypes.windll.shcore.SetProcessDpiAwareness(1)
-    except Exception as e:
-        print(f"Warning: Could not set DPI awareness. Coordinates may be incorrect on scaled displays. Error: {e}")
+        # Per-Monitor DPI Aware v2 (Windows 10 Creators Update 이상)
+        ctypes.windll.shcore.SetProcessDpiAwareness(2)
+        print("DPI Awareness set to Per-Monitor V2.")
+    except AttributeError:
+        # 이전 버전 Windows 호환용
+        try:
+            ctypes.windll.user32.SetProcessDPIAware()
+            print("DPI Awareness set to System-Aware.")
+        except Exception as e:
+            print(f"Warning: Could not set DPI awareness. Error: {e}")
 
     gw.FAILSAFE = False
     root = tk.Tk()
