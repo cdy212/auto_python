@@ -1,4 +1,4 @@
-# AutomationProject/core/recorder.py
+# AutomationProject/core/recorder.py 
 import time
 import threading
 from pynput import mouse, keyboard

@@ -1,4 +1,4 @@
-# AutomationProject/core/controls.py
+# AutomationProject/core/controls.py1
 import time
 import pydirectinput
 
