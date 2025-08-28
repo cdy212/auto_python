@@ -1,0 +1,31 @@
+{
+    "Notepad": {
+        "name": "Notepad",
+        "process_name": "Notepad.exe",
+        "conditions": [
+            {
+                "id": "83e92903-20b7-4096-9e0f-6af7e0c7db78",
+                "type": "Image Similarity",
+                "params": {
+                    "threshold": 85.34482758620689,
+                    "image_path": "workspace\\images\\ba756f8a-5616-48ca-b149-ed5dad407ed0.png"
+                },
+                "enabled": true,
+                "actions": [
+                    {
+                        "id": "89a94690-1339-4b83-80f8-4f67c259303c",
+                        "type": "Coordinate Click",
+                        "params": {}
+                    }
+                ]
+            },
+            {
+                "id": "9a8b2d48-6731-4f6d-99ec-d26ecde08edd",
+                "type": "Periodic Execution",
+                "params": {},
+                "enabled": true,
+                "actions": []
+            }
+        ]
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "Notepad": {
+        "process_name": "Notepad.exe",
+        "condition": "always_true",
+        "actions": []
+    },
+    "Microsoft.Notes": {
+        "process_name": "Microsoft.Notes.exe",
+        "condition": "always_true",
+        "actions": []
+    }
+}
