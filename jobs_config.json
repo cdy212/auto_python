@@ -8,23 +8,222 @@
                 "type": "Image Similarity",
                 "params": {
                     "threshold": 85.34482758620689,
-                    "image_path": "workspace\\images\\ba756f8a-5616-48ca-b149-ed5dad407ed0.png"
+                    "image_path": "workspace\\images\\ba756f8a-5616-48ca-b149-ed5dad407ed0.png",
+                    "interval": 20.0
                 },
                 "enabled": true,
                 "actions": [
                     {
-                        "id": "89a94690-1339-4b83-80f8-4f67c259303c",
-                        "type": "Coordinate Click",
-                        "params": {}
+                        "id": "afeb4fb1-22bd-414f-99b4-0c2c5b94582b",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0.0,
+                            "text": "1"
+                        }
+                    },
+                    {
+                        "id": "b1e81308-2b11-4473-a994-f6815918b59d",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 0.27,
+                            "relative_pos": [
+                                371,
+                                279
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "ad7d22c0-ae49-42a9-ba66-2af3d88dd3dd",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                371,
+                                279
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "5fe0e56b-72b3-4feb-a89e-49494902b43a",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0,
+                            "text": "22"
+                        }
+                    },
+                    {
+                        "id": "1be1b817-b666-4ad2-8d9c-08f26a2cb7b4",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 0.81,
+                            "relative_pos": [
+                                405,
+                                296
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "727827a6-ffa5-490b-baea-5e089eac5ae6",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                405,
+                                296
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "cfbf6ea8-0d62-4ba9-aafc-433bf02e75c4",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0,
+                            "text": "333"
+                        }
+                    },
+                    {
+                        "id": "2ee5485d-c9f1-49b4-a114-bb79a87eab43",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 1.32,
+                            "relative_pos": [
+                                457,
+                                325
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "e25b25a6-ee7c-4acd-8725-85f2d680b743",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                457,
+                                325
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "c1334ca2-cd29-4f4d-b1b2-ba11a518f432",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0,
+                            "text": "444"
+                        }
+                    },
+                    {
+                        "id": "7278e509-ffc1-48cb-9e65-f64523a2c0ee",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 0.68,
+                            "relative_pos": [
+                                521,
+                                350
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "45290864-3d0f-4e57-ac83-65442eb77f9e",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0.0,
+                            "text": "4"
+                        }
+                    },
+                    {
+                        "id": "c6a05fea-953e-424d-b227-9ec47cb7e551",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.0,
+                            "relative_pos": [
+                                521,
+                                350
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "46ddbf20-ac5a-4fd6-9a0e-de855b490628",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0.0,
+                            "text": "a"
+                        }
+                    },
+                    {
+                        "id": "721bb862-bb82-463d-89a5-5046ab0a7513",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 1.5,
+                            "relative_pos": [
+                                492,
+                                405
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "ae532555-643f-414a-ad3c-e60833e54c6b",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                492,
+                                405
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "967865cf-af4e-4be2-a5c2-3c2bde5dd585",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0,
+                            "text": "bb"
+                        }
+                    },
+                    {
+                        "id": "0c4ed7e2-7f75-47df-86c5-ba5165f4fe7c",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 1.01,
+                            "key": "space"
+                        }
+                    },
+                    {
+                        "id": "d4099666-2d2c-4153-bacd-856f6a51aa07",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.22,
+                            "key": "space"
+                        }
+                    },
+                    {
+                        "id": "77754674-4b25-4d4d-a745-80e2209c5fb7",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.11,
+                            "relative_pos": [
+                                411,
+                                444
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
                     }
                 ]
-            },
-            {
-                "id": "9a8b2d48-6731-4f6d-99ec-d26ecde08edd",
-                "type": "Periodic Execution",
-                "params": {},
-                "enabled": true,
-                "actions": []
             }
         ]
     }
