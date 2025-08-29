@@ -1,12 +1,12 @@
 # AutomationProject/ui/actions_frame.py
 import tkinter as tk
-from tkinter import ttk, simpledialog
+from tkinter import ttk, simpledialog, messagebox
 from data.models import Action
 from core.recorder import Recorder
 import copy
 import uuid
 
-# (ActionEditorDialog 클래스는 이전과 동일)
+# (ActionEditorDialog 클래스는 이전 코드와 동일)
 class ActionEditorDialog(tk.Toplevel):
     def __init__(self, parent, action):
         super().__init__(parent)
@@ -74,29 +74,33 @@ class ActionsFrame(ttk.LabelFrame):
         self._bind_dnd_events()
 
     def _create_widgets(self):
-        self.columnconfigure(0, weight=1); self.rowconfigure(0, weight=1)
-        # <<< 수정: "#" 컬럼 추가 >>>
-        self.tree = ttk.Treeview(self, columns=("#", "Delay", "Type", "Details"), show="headings")
-        self.tree.heading("#", text="#")
-        self.tree.heading("Delay", text="Delay(s)")
-        self.tree.heading("Type", text="Type")
-        self.tree.heading("Details", text="Details")
-        self.tree.column("#", width=40, anchor="center", stretch=False)
-        self.tree.column("Delay", width=60, anchor="center", stretch=False)
-        self.tree.column("Type", width=120, stretch=False)
-        self.tree.column("Details", width=100) # Details 컬럼만 너비 조절
-        self.tree.grid(row=0, column=0, sticky="nsew", padx=5, pady=5)
+        self.columnconfigure(0, weight=1)
+        self.rowconfigure(0, weight=1)
+
+        # <<< 수정: selectmode를 'extended'로 변경하여 다중 선택 활성화 >>>
+        self.tree = ttk.Treeview(self, columns=("#", "Delay", "Type", "Details"), show="headings", selectmode='extended')
+        self.tree.heading("#", text="#"); self.tree.heading("Delay", text="Delay(s)"); self.tree.heading("Type", text="Type"); self.tree.heading("Details", text="Details")
+        self.tree.column("#", width=40, anchor="center", stretch=False); self.tree.column("Delay", width=60, anchor="center", stretch=False); self.tree.column("Type", width=120, stretch=False); self.tree.column("Details", width=100)
+        self.tree.grid(row=0, column=0, sticky="nsew", padx=(5,0), pady=5)
         
         self.tree.bind("<Double-1>", self.on_double_click_edit)
         
+        order_control_frame = ttk.Frame(self, style='TFrame')
+        order_control_frame.grid(row=0, column=1, sticky="ns", padx=(0,5), pady=5)
+        ttk.Button(order_control_frame, text="▲", width=2, command=self.move_action_up).pack(pady=(0,2))
+        ttk.Button(order_control_frame, text="▼", width=2, command=self.move_action_down).pack()
+
         control_frame = ttk.Frame(self, style='TFrame')
-        control_frame.grid(row=1, column=0, sticky="ew", padx=5, pady=(5,0))
+        control_frame.grid(row=1, column=0, columnspan=2, sticky="ew", padx=5, pady=(5,0))
+
         self.record_button = ttk.Button(control_frame, text="Record Actions", command=self.toggle_recording)
         self.record_button.pack(side=tk.LEFT, padx=(0, 5))
         
         ttk.Button(control_frame, text="Add New", command=self.add_new_action).pack(side=tk.LEFT, padx=5)
         ttk.Button(control_frame, text="Copy Selected", command=self.copy_action).pack(side=tk.LEFT, padx=5)
         ttk.Button(control_frame, text="Remove Selected", command=self.remove_action).pack(side=tk.LEFT, padx=5)
+        
+        ttk.Button(control_frame, text="Clear All", command=self.clear_all_actions).pack(side=tk.RIGHT, padx=5)
 
     def _bind_dnd_events(self):
         self.tree.bind("<ButtonPress-1>", self.on_dnd_press)
@@ -154,7 +158,6 @@ class ActionsFrame(ttk.LabelFrame):
             for i, action in enumerate(self.current_condition.actions):
                 delay = action.params.get('delay', 0)
                 details = ", ".join([f"{k}: {v}" for k, v in action.params.items() if k != 'delay' and not k.startswith('__')])
-                # <<< 수정: iid를 인덱스로, 첫 번째 값으로 순서 번호 추가 >>>
                 self.tree.insert("", "end", iid=i, values=(i + 1, f"{delay:.2f}", action.type, details))
         if selected_items:
             try: self.tree.selection_set(selected_items)
@@ -179,38 +182,27 @@ class ActionsFrame(ttk.LabelFrame):
             self.current_condition.actions.extend(recorded_actions)
             self.update_treeview()
         self.record_button.config(state=tk.NORMAL)
-        
+    
     def add_new_action(self):
-        if not self.current_condition:
-            self.log("❌ ERROR: A condition must be selected to add a new action.")
-            return
-        
+        if not self.current_condition: self.log("❌ ERROR: A condition must be selected to add a new action."); return
         action_type = simpledialog.askstring("Add New Action", "Enter Action Type:", initialvalue="Mouse Click", parent=self)
         if action_type:
-            # <<< 수정: 마우스 클릭 시 기본 파라미터 추가 >>>
             params = {'delay': 0.5}
             if "Mouse" in action_type:
-                params['target_type'] = 'relative'
-                params['relative_pos'] = (0, 0)
-                params['button'] = 'Button.left'
+                params['target_type'] = 'relative'; params['relative_pos'] = (0, 0); params['button'] = 'Button.left'
             new_action = Action(action_type, params=params)
             self.current_condition.actions.append(new_action)
             self.update_treeview()
             self.log(f"Added new '{action_type}' action.")
 
     def copy_action(self):
-        if not self.current_condition or not self.tree.selection():
-            self.log("⚠️ No action selected to copy.")
-            return
-
-        # <<< 수정: 여러 항목 동시 복사 지원 >>>
+        if not self.current_condition or not self.tree.selection(): self.log("⚠️ No action selected to copy."); return
         selected_indices = sorted([int(iid) for iid in self.tree.selection()])
-        for index in reversed(selected_indices): # 역순으로 삽입해야 순서가 유지됨
+        for index in reversed(selected_indices):
             action_to_copy = self.current_condition.actions[index]
             new_action = copy.deepcopy(action_to_copy)
             new_action.id = str(uuid.uuid4())
             self.current_condition.actions.insert(index + 1, new_action)
-        
         self.update_treeview()
         self.log(f"Copied {len(selected_indices)} action(s).")
         
@@ -218,9 +210,38 @@ class ActionsFrame(ttk.LabelFrame):
         if not self.current_condition or not self.tree.selection(): return
         selected_iids = self.tree.selection()
         indices_to_delete = sorted([int(iid) for iid in selected_iids], reverse=True)
-
         for index in indices_to_delete:
             del self.current_condition.actions[index]
-        
         self.update_treeview()
         self.log(f"Removed {len(indices_to_delete)} action(s).")
+
+    def clear_all_actions(self):
+        if not self.current_condition: self.log("⚠️ No condition selected to clear actions from."); return
+        if messagebox.askyesno("Confirm Clear", "Are you sure you want to delete all actions for this condition?"):
+            self.current_condition.actions.clear()
+            self.update_treeview()
+            self.log("🗑️ All actions have been cleared.")
+
+    def move_action_up(self):
+        if not self.current_condition or not self.tree.selection(): return
+        selected_iids = self.tree.selection()
+        selected_indices = sorted([int(iid) for iid in selected_iids])
+        if selected_indices[0] == 0: return
+        for index in selected_indices:
+            action_to_move = self.current_condition.actions.pop(index)
+            self.current_condition.actions.insert(index - 1, action_to_move)
+        self.update_treeview()
+        new_selection = [str(i-1) for i in selected_indices]
+        self.tree.selection_set(new_selection)
+
+    def move_action_down(self):
+        if not self.current_condition or not self.tree.selection(): return
+        selected_iids = self.tree.selection()
+        selected_indices = sorted([int(iid) for iid in selected_iids], reverse=True)
+        if selected_indices[0] >= len(self.current_condition.actions) - 1: return
+        for index in selected_indices:
+            action_to_move = self.current_condition.actions.pop(index)
+            self.current_condition.actions.insert(index + 1, action_to_move)
+        self.update_treeview()
+        new_selection = [str(i+1) for i in selected_indices]
+        self.tree.selection_set(new_selection)
