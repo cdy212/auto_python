@@ -98,7 +98,6 @@ class Recorder(threading.Thread):
             if self.callback: self.callback([])
             return
 
-        # <<< 수정: 모든 이벤트를 시간순으로 먼저 정렬하여 순서 보장 >>>
         self.events.sort(key=lambda e: e['time'])
 
         actions = []
@@ -107,19 +106,16 @@ class Recorder(threading.Thread):
         text_buffer = ""
         text_buffer_start_time = 0
 
-        # 텍스트 버퍼를 비우고 Action으로 변환하는 헬퍼 함수
         def flush_text_buffer():
             nonlocal text_buffer, last_event_time
             if text_buffer:
                 delay = text_buffer_start_time - last_event_time
                 if delay < 0: delay = 0
                 actions.append(Action("Key Input", {'delay': round(delay, 2), 'text': text_buffer}))
-                # 마지막 이벤트 시간은 텍스트 입력이 시작된 시간으로 설정
                 last_event_time = text_buffer_start_time
                 text_buffer = ""
 
         for event in self.events:
-            # 현재 이벤트가 키 입력이 아니면, 이전에 쌓인 텍스트 버퍼를 먼저 처리
             if event['type'] != 'key':
                 flush_text_buffer()
 
@@ -142,7 +138,7 @@ class Recorder(threading.Thread):
                 action_params['relative_pos'] = (rx, ry)
                 action_params['button'] = str(event['button'])
                 action_params['target_type'] = 'relative'
-                action_params['__event_time'] = event['time'] # 더블클릭 시간 비교용 임시 저장
+                action_params['__event_time'] = event['time']
                 actions.append(Action("Mouse Click", action_params))
 
             elif event['type'] == 'key':
@@ -152,7 +148,7 @@ class Recorder(threading.Thread):
                         text_buffer_start_time = event['time']
                     text_buffer += key.char
                 else:
-                    flush_text_buffer() # 특수키 입력 전에 버퍼 비우기
+                    flush_text_buffer()
                     delay = event['time'] - last_event_time
                     action_params = {'delay': round(delay, 2)}
                     action_params['key'] = str(key).replace("Key.", "")
@@ -162,7 +158,6 @@ class Recorder(threading.Thread):
 
         flush_text_buffer()
 
-        # 더블클릭 처리 (모든 Action 생성 후 후처리)
         final_actions = []
         i = 0
         while i < len(actions):
@@ -170,7 +165,6 @@ class Recorder(threading.Thread):
             if current_action.type == "Mouse Click" and i + 1 < len(actions):
                 next_action = actions[i+1]
                 if next_action.type == "Mouse Click":
-                    # __event_time을 사용하여 정확한 시간차 계산
                     time_diff = next_action.params.get('__event_time', 0) - current_action.params.get('__event_time', 0)
                     pos1 = current_action.params['relative_pos']
                     pos2 = next_action.params['relative_pos']
@@ -179,15 +173,43 @@ class Recorder(threading.Thread):
                     if time_diff < 0.4 and dist_sq < 25:
                         current_action.type = "Mouse Double Click"
                         final_actions.append(current_action)
-                        i += 2 # 두 개를 하나로 합쳤으므로 인덱스 2 증가
+                        i += 2
                         continue
             final_actions.append(current_action)
             i += 1
         
-        # 임시 키 제거
         for action in final_actions:
             if '__event_time' in action.params:
                 del action.params['__event_time']
 
+        # <<< 수정: Mouse Move와 Click/Double Click을 하나의 'Click'으로 병합 >>>
+        merged_actions = []
+        i = 0
+        while i < len(final_actions):
+            current_action = final_actions[i]
+            
+            # 다음 액션이 있는지, 현재 액션이 Mouse Move인지 확인
+            if current_action.type == "Mouse Move" and i + 1 < len(final_actions):
+                next_action = final_actions[i+1]
+                
+                # 다음 액션이 같은 위치의 Click 또는 Double Click인지 확인
+                if next_action.type in ["Mouse Click", "Mouse Double Click"]:
+                    pos1 = current_action.params.get('relative_pos')
+                    pos2 = next_action.params.get('relative_pos')
+                    if pos1 and pos2 and pos1 == pos2:
+                        # Move의 delay를 Click의 delay로 합산하여 이전 액션과의 전체 지연 시간 유지
+                        click_delay = next_action.params.get('delay', 0)
+                        move_delay = current_action.params.get('delay', 0)
+                        next_action.params['delay'] = round(move_delay + click_delay, 2)
+
+                        # Click 액션만 추가하고, Move 액션은 건너뜀
+                        merged_actions.append(next_action)
+                        i += 2 # 두 개의 액션을 처리했으므로 인덱스 2 증가
+                        continue
+                        
+            # 병합 대상이 아니면 현재 액션만 추가
+            merged_actions.append(current_action)
+            i += 1
+
         if self.callback:
-            self.callback(final_actions)
+            self.callback(merged_actions)

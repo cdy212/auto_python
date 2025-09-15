@@ -1,0 +1,35 @@
+2025-08-29 14:58:22,889 - ERROR - Unhandled exception:
+Traceback (most recent call last):
+  File "C:\Users\dante\Desktop\gemini_cli\step_auto\main.py", line 96, in <module>
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+KeyboardInterrupt
+
+2025-08-29 14:59:52,452 - ERROR - Unhandled exception:
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 1889, in __call__
+    try:
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\dante\Desktop\gemini_cli\step_auto\main.py", line 77, in <module>
+    root.mainloop()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 1429, in mainloop
+    self.tk.mainloop(n)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 1896, in __call__
+    self.widget._report_exception()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 1612, in _report_exception
+    root.report_callback_exception(exc, val, tb)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 2350, in report_callback_exception
+    traceback.print_exception(exc, val, tb)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\traceback.py", line 105, in print_exception
+    print(line, file=file, end="")
+  File "C:\Users\dante\Desktop\gemini_cli\step_auto\main.py", line 46, in write
+    ui_log_func(text)
+  File "C:\Users\dante\Desktop\gemini_cli\step_auto\ui\main_view.py", line 495, in log
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\tkinter\__init__.py", line 3825, in see
+    self.tk.call(self._w, 'see', index)
+KeyboardInterrupt
+
