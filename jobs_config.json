@@ -7,7 +7,7 @@
                 "id": "83e92903-20b7-4096-9e0f-6af7e0c7db78",
                 "type": "Image Similarity",
                 "params": {
-                    "threshold": 85.34482758620689,
+                    "threshold": 85.1,
                     "image_path": "workspace\\images\\ba756f8a-5616-48ca-b149-ed5dad407ed0.png",
                     "interval": 20.0
                 },
@@ -235,7 +235,7 @@
                 "id": "18834e2c-b428-4f09-b826-61620bdfda01",
                 "type": "Image Similarity",
                 "params": {
-                    "image_path": "workspace\\images\\8755ac22-3ea4-4243-b100-851a611d4c16.png",
+                    "image_path": "workspace\\images\\1210b5e0-47d9-4a28-bd1f-79f80df58e31.png",
                     "threshold": 80.0,
                     "interval": 2.0
                 },
