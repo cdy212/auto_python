@@ -226,5 +226,847 @@
                 ]
             }
         ]
+    },
+    "LaTaleClient": {
+        "name": "LaTaleClient",
+        "process_name": "LaTaleClient.exe",
+        "conditions": [
+            {
+                "id": "3a928ca2-2856-4c21-95f0-10b48b321e28",
+                "type": "Image Similarity",
+                "params": {
+                    "image_path": "workspace\\images\\9584e492-aa71-4581-a3f8-db9c05b4f842.png",
+                    "threshold": 88.0,
+                    "interval": 15.0
+                },
+                "enabled": true,
+                "actions": [
+                    {
+                        "id": "49076721-fbba-40da-9493-408175d9a76f",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 0.52,
+                            "relative_pos": [
+                                1926,
+                                746
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "4d66d900-ed92-40a1-9836-efa6d5c1c3f1",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                1926,
+                                746
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "894a7bbc-cfd6-423c-8603-e07f69e730e1",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 0.96,
+                            "relative_pos": [
+                                1377,
+                                793
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "355f328e-5aa9-43cd-bf8a-523e9daa544a",
+                        "type": "Mouse Double Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                1377,
+                                793
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "318d0665-870c-401f-ae3f-76c3dafef67e",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 1.34,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "e37ce3d0-162c-4773-9b3f-b1b2ec45a0ba",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.45,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "cda2cac4-39c0-4d82-894e-1a12066718c9",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.61,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "38bf95ec-4c4d-414a-a3b4-b0e426b1a1e3",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.66,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "c2b4231c-4ee1-4d16-8cea-deb50e3f72d4",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.34,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "9ec39099-264b-4d3d-bcc7-b5d0e1169dff",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.26,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "c0df4c19-5ce6-4007-9557-e5497908c30b",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.19,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "c092cc82-7946-4773-8f26-9d6c39d88896",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.57,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "51b98682-e1b0-4ae0-a906-0d60d9cab77e",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.5,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "df9d6fda-5718-4c7b-8f32-79f7727b0872",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "4de2e996-bd9f-48d1-8e5c-81a2e24d46c4",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "ef5fc034-ce35-49c3-aafc-05b754d968eb",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "1a761ff0-fbf4-4e79-8004-7b71dc950955",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "83ec6f02-bfda-4c63-8fc1-61875cad3963",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "cea8c9dc-5237-4b62-ad0c-487b991683c6",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "e01cdac2-4336-48da-9ac5-c56405b7615e",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "ffe7695e-e40a-4e73-86bf-6c6f095784e2",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "6b544deb-6bc8-44eb-894a-32f6edde3988",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "7795c038-5573-42c7-b3ff-afec1817e5f1",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "5811154f-93d1-4534-98df-f2f6a9a42600",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "c68922f0-8e38-4606-b5ac-617d9f46d1ee",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "ffc90dce-60b2-4a75-af91-a90fb0f22a76",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "5f2865c4-9b99-4c8e-9537-e6f62df44caa",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "1aeef5de-56e6-44d9-81d3-cba5c2e4be66",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "06e71aad-86ae-4191-aa3e-200c96897885",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "f8ad20f1-da40-4f00-a023-99c1e333beb3",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "0c262a29-6b7d-4372-8cdb-1a0fe2210001",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "ba550798-bc65-48b4-8d6f-6dcb15c74938",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "8705da0d-6de8-4150-a403-b665e23a8ef1",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "9e1d12e0-3e4f-4d07-b3c6-798b47627fe8",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "f041d964-e946-440a-b5df-4bbd2e0ab679",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "50da80ee-36d3-4be4-b030-aac4d35834a8",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "ad2e4945-9a09-431a-b3b8-d94124fe4c1a",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "7e82383b-a84f-4266-8a34-0bceae60fdc5",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "8655b4ad-9f52-4955-9d09-8c7b4ec41989",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "right"
+                        }
+                    },
+                    {
+                        "id": "170b7aad-466d-44c4-b2bc-cb8d1d287482",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.5,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "bdb428f2-15ba-42af-a381-8e3ad57a48f4",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.51,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "b64c6665-18df-4403-991a-380795abf6a4",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "ddb1bdbb-b5d1-4b0c-8284-398e20cb855c",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "625093bd-b1c8-40e9-b565-59cd2dbe98f1",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "090d927c-caba-45ca-811c-cec2105d74a5",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "b73978a9-deb3-4c47-87cc-fc9440656d8f",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "8d6df6f7-4c8d-4600-a8cc-8447c3ee8e5a",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "ffeafb8c-43f0-4dc9-b57a-a813d191a730",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "b80477f9-c92c-4ed6-a833-9b13c2b2481c",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.06,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "e8983ca3-baa3-4453-8876-08035552bc52",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "86ed4216-e795-4d44-83f7-4a7725c40aa8",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.0,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "51501407-326c-4bbc-8ccb-c3fe9c6378da",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.02,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "ef89b303-9f3c-4958-9e25-4be681f82de0",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "9486bbdd-037e-436f-95b8-ffa2e70ed92d",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "ce905442-1027-427d-a490-839010631286",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "f1d87f99-76c5-4878-b0ee-d97095cb2c17",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "52ee0945-803d-4c72-9e72-1442bbd575bd",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "453c0285-4c05-4bb9-9754-248f53673812",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "36e16d64-f73f-4f7e-a258-edd5cdc605c1",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "986787b5-a79e-4093-b6df-8b970ce84949",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "9473b188-a631-403a-8704-1c9c0a2fbd55",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "b24805f3-39b7-4e57-92ff-25fcd02fe3b6",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "8700c5da-ddc6-43d0-b2ff-f0f2e4047b88",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "2d68a59d-045e-4d0c-b2e2-b591e77eead0",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "71a92b71-e1d9-438b-848b-64e9d928ab21",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "7571035b-80d8-4324-842c-0a5a5b5db4ab",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "78564b60-b099-4628-863b-183099f31e12",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "d514004d-534c-4333-b85d-9ae741dcb4bd",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "8ce62a99-a40f-4591-bc2f-3545f5011087",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.03,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "1b31710f-cc5f-42bf-8bc8-3b226ea3da13",
+                        "type": "Key Special",
+                        "params": {
+                            "delay": 0.05,
+                            "key": "left"
+                        }
+                    },
+                    {
+                        "id": "166081a0-dfec-4da6-8bb9-de8215b40cf0",
+                        "type": "Key Input",
+                        "params": {
+                            "delay": 0.0,
+                            "text": "i"
+                        }
+                    },
+                    {
+                        "id": "a33f81b2-5d44-4540-aa6b-9de4aed1d5fc",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 3.4,
+                            "relative_pos": [
+                                559,
+                                353
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "42ef20d0-af70-4dba-945a-1f501b74cff2",
+                        "type": "Mouse Double Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                559,
+                                353
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "916b6ee1-0d92-4602-a826-3f4be34af10e",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.14,
+                            "relative_pos": [
+                                559,
+                                353
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "311b428a-2a77-40d5-8097-4b13a073f4d7",
+                        "type": "Mouse Double Click",
+                        "params": {
+                            "delay": 1.2,
+                            "relative_pos": [
+                                559,
+                                353
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    }
+                ]
+            },
+            {
+                "id": "a1f9be5f-a911-4f66-9536-68d295c90f40",
+                "type": "Image Similarity",
+                "params": {
+                    "image_path": "workspace\\images\\a362beb8-b9a9-4438-b5f7-727dc8a43181.png",
+                    "threshold": 88.0,
+                    "interval": 5.0
+                },
+                "enabled": true,
+                "actions": [
+                    {
+                        "id": "5457e6ac-b837-46bd-ad50-087e7046ae65",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 3.2,
+                            "relative_pos": [
+                                1861,
+                                757
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "546d58b7-2d1a-4a1c-98f8-6df5631ac398",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                1861,
+                                757
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "254ac547-c202-4254-a11d-74880a731902",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 6.88,
+                            "relative_pos": [
+                                636,
+                                224
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "792409da-65cc-4d60-be25-bb36c956577c",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                636,
+                                224
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "4a476a8d-de38-49d9-b250-bec0ccf9cefe",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 2.26,
+                            "relative_pos": [
+                                488,
+                                342
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "4c835e08-afe2-4b6a-a43b-235912d83a60",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                488,
+                                342
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "397f785a-fa4a-4609-b4dc-70ae68288b15",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 2.25,
+                            "relative_pos": [
+                                548,
+                                340
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "01747022-f3f6-4158-a715-044c836a92d1",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                548,
+                                340
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "97de53d5-ec9d-4a94-99d7-f949b48fcde4",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 1.58,
+                            "relative_pos": [
+                                493,
+                                346
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "c9c159f5-ae05-4efa-a1b3-008a67e30bda",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                493,
+                                346
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "af6eb1f4-7885-4341-9765-33c3bb5094c1",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 1.69,
+                            "relative_pos": [
+                                538,
+                                343
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "749fabbb-18f6-4199-b110-8798067992a4",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                538,
+                                343
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "dd51f075-06dd-4da6-be2b-37fc61c3270a",
+                        "type": "Mouse Move",
+                        "params": {
+                            "delay": 2.39,
+                            "relative_pos": [
+                                1859,
+                                984
+                            ],
+                            "target_type": "relative"
+                        }
+                    },
+                    {
+                        "id": "fd87f054-5b91-4b98-ad07-051daf5bfe62",
+                        "type": "Mouse Click",
+                        "params": {
+                            "delay": 0.01,
+                            "relative_pos": [
+                                1859,
+                                984
+                            ],
+                            "button": "Button.left",
+                            "target_type": "relative"
+                        }
+                    }
+                ]
+            }
+        ]
     }
 }

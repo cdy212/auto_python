@@ -243,6 +243,7 @@ class AutomationUI:
         self.saved_jobs_listbox.bind('<<ListboxSelect>>', self.on_saved_job_select)
         self.update_saved_jobs_list()
 
+
         # Job Control
         control_frame = ttk.LabelFrame(job_settings_frame, text="Job Control")
         control_frame.grid(row=3, column=0, sticky="ew", padx=10, pady=5)
